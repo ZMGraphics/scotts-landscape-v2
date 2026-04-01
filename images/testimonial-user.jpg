@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Scott’s Landscape</title>
+   
+    <link rel="shortcut icon" type="image/png" href="https://www.scottslandscapeandfence.com/templates/ficc-theme/images/logo/fav-icon.png"/>
+<link rel="stylesheet" type="text/css" href="https://www.scottslandscapeandfence.com/min/static/css/jquery/stackedrows.css,static/css/jquery/skrollr.css,static/css/social_wall/social_wall.css?1551970848.1" />
+<link rel="stylesheet" type="text/css" href="https://www.scottslandscapeandfence.com/min/static/css/jquery/loading.css,static/css/jquery/tipsy.css,static/css/jquery/ajaxform.css,static/css/jquery/fctoggle.css,static/css/jquery/fancybox.css,static/css/jquery/spectrum.css,static/css/jquery/passy.css,static/css/jquery/validationEngine.css,static/css/jquery/intlTelInput.css,static/css/jquery/ui.css,static/css/jquery/ui.datepicker.css,static/css/photoswipe/photoswipe.css?1737897153.1" />
+<link rel="stylesheet" type="text/css" href="https://www.scottslandscapeandfence.com/min/static/css/fontawesome.css?1764091197.1" />
+<link rel="stylesheet" type="text/css" href="https://www.scottslandscapeandfence.com/min/templates/ficc-theme/css/custom.css?1754479989.1" />
+<link rel="stylesheet" type="text/css" href="https://www.scottslandscapeandfence.com/min/templates/ficc-theme/css/fonts.css,templates/ficc-theme/css/animations.css,templates/ficc-theme/css/style.css,templates/ficc-theme/css/themes.css,templates/ficc-theme/css/photoswipe.css,templates/ficc-theme/css/default-skin.css,templates/ficc-theme/css/detail.css,templates/ficc-theme/css/slick.css?1651567012.1" />
+<link rel="stylesheet" type="text/css" href="https://www.scottslandscapeandfence.com/min/templates/ficc-theme/css/layout.css?1651664209.1" />
+    <script type="text/javascript" src="https://www.scottslandscapeandfence.com/min/static/js/jquery/jquery.js"></script>
+  
+	<style type="text/css">
+	body{ text-align: center;}
+		.fourcontent { padding: 40px 20px; }
+		.fourlogo {
+			clear: both;
+			display: block;
+			margin: 0 auto 40px auto;
+		}
+		ul{ display: inline-block; text-align: left; margin: auto; padding: 0px 20px 30px; }
+		.gohome.button {    margin-right: 0 !important; }
+        body{
+            padding: 0px;
+        }
+	</style>
+    </head>
+<body class="innerbody layout">
+<section class="contentfirst textcenter">
+    <div class="container fourcontent">
+        <div class="content">
+<p><a href="https://www.scottslandscapeandfence.com/"><img class="fourlogo fr-fic " src="https://www.scottslandscapeandfence.com/static/sitefiles/images/logo_8.png" style="max-width: 250px;"></a></p>
+<p><img class="fourlogo fr-fic " src="https://www.scottslandscapeandfence.com/static/sitefiles/images/404-image_2.png"></p>
+<h5>Unfortunately the page you are looking for cannot be found.</h5>
+<ul>
+<li>Check the spelling of the address you typed.</li>
+<li>Are you certain this page exists? The link may have expired.</li>
+<li>If you are still having problems, please visit the Home Page.</li></ul>
+<p><a class="gohome button" href="https://www.scottslandscapeandfence.com/">Home Page</a></p></div>    </div>
+</section>
+<script type="text/javascript" src="https://www.scottslandscapeandfence.com/min/static/js/jquery/stackedrows.js,static/js/jquery/skrollr.js,static/js/jquery/masonry.js,static/js/social_wall/social_wall.js?1608040023.1"></script>
+<script type="text/javascript" src="https://www.scottslandscapeandfence.com/min/static/js/jquery/fi.js,static/js/jquery/loading.js,static/js/jquery/tipsy.js,static/js/jquery/ajaxlinks.js,static/js/jquery/ajaxform.js,static/js/jquery/cookie.js,static/js/jquery/fctoggle.js,static/js/jquery/fancybox.js,static/js/jquery/spectrum.js,static/js/jquery/passy.js,static/js/jquery/validationEngine.js,static/js/jquery/intlTelInput.js,static/js/photoswipe/photoswipe.umd.min.js,static/js/photoswipe/photoswipe-lightbox.umd.min.js?1761840740.1"></script>
+<script type="text/javascript" src="https://www.scottslandscapeandfence.com/min/static/js/languages/jquery/validationEngine/en.js,static/js/jquery/ui.js,static/js/jquery/ui.datepicker.js,static/js/jquery/ui.widget.js,static/js/jquery/ui.tabs.js?1742973875.1"></script>
+<script type="text/javascript" src="https://www.scottslandscapeandfence.com/min/templates/ficc-theme/js/custom.js?1754479989.1"></script>
+<script type="text/javascript" src="https://www.scottslandscapeandfence.com/min/templates/ficc-theme/js/modernizr.js,templates/ficc-theme/js/style.js,templates/ficc-theme/js/photoswipe.min.js,templates/ficc-theme/js/photoswipe-ui-default.min.js,templates/ficc-theme/js/slick.min.js?1629784585.1"></script>
+<script type="text/javascript" src="https://www.scottslandscapeandfence.com/min/templates/ficc-theme/js/layout.js?1635850551.1"></script>
+    
+<script>
+   setTimeout(function () {
+        var base_url = 'https://www.scottslandscapeandfence.com/';
+        window.location.href = base_url;
+    }, 15000);
+</script>
+   
+    
+</body>
+</html>

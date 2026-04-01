@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scott's Landscape & Fence | Rochester, NY</title>
+  <meta name="description" content="Over 30 years of residential and commercial fencing, landscaping, and hardscaping in Rochester and Western New York.">
+  <link rel="icon" type="image/png" href="images/logo-alt.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green: #00694b;
+      --green-dark: #004a35;
+      --green-deep: #0a1f17;
+      --green-light: #e8f5ee;
+      --accent: #d4852e;
+      --accent-hover: #b8711f;
+      --white: #ffffff;
+      --off-white: #fafaf8;
+      --light-gray: #f4f4f2;
+      --border: #e8e8e6;
+      --text: #1a1a1a;
+      --text-mid: #555;
+      --text-light: #888;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+    .delay-6 { transition-delay: 0.6s; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 1px 20px rgba(0,0,0,0.06); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 76px;
+    }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 0.84rem; font-weight: 500; color: var(--text-mid);
+      letter-spacing: 0.01em; transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-phone {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.84rem; font-weight: 600; color: var(--text);
+    }
+    .nav-phone svg { width: 14px; height: 14px; fill: var(--green); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 24px; border-radius: 6px;
+      background: var(--green); color: #fff;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .nav-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .nav-cta svg { width: 14px; height: 14px; fill: #fff; }
+
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+    .nav-toggle span { width: 22px; height: 2px; background: var(--text); transition: all 0.3s; transform-origin: center; }
+    .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; }
+    .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      background: var(--green-deep);
+      overflow: hidden; padding-top: 76px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('images/hero-main.png') center/cover no-repeat;
+      transform: scale(1.05);
+      transition: transform 12s ease-out;
+    }
+    .hero.loaded .hero-bg { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,31,23,0.88) 0%, rgba(10,31,23,0.6) 50%, rgba(10,31,23,0.4) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 680px; padding: 80px 0;
+    }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+      opacity: 0; animation: heroFadeUp 0.7s 0.3s forwards;
+    }
+    .hero-label::before {
+      content: ''; width: 32px; height: 1px; background: var(--accent);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5.5vw, 4.5rem);
+      font-weight: 700; color: #fff; line-height: 1.08;
+      margin-bottom: 24px;
+      opacity: 0; animation: heroFadeUp 0.7s 0.5s forwards;
+    }
+    .hero h1 em {
+      font-style: normal; color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 1.05rem; color: rgba(255,255,255,0.6);
+      line-height: 1.8; margin-bottom: 44px; max-width: 520px;
+      opacity: 0; animation: heroFadeUp 0.7s 0.7s forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: heroFadeUp 0.7s 0.9s forwards;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px; border-radius: 6px;
+      font-family: 'Inter', sans-serif; font-size: 0.88rem;
+      font-weight: 600; letter-spacing: 0.01em;
+      cursor: pointer; border: none; transition: all 0.3s;
+    }
+    .btn svg { width: 16px; height: 16px; fill: currentColor; }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,133,46,0.3); }
+    .btn-outline {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+    .btn-green { background: var(--green); color: #fff; }
+    .btn-green:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,105,75,0.25); }
+    .btn-green-outline { background: transparent; color: var(--green); border: 1.5px solid var(--green); }
+    .btn-green-outline:hover { background: var(--green); color: #fff; transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.3); font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      opacity: 0; animation: heroFadeUp 0.7s 1.2s forwards;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 48px; background: rgba(255,255,255,0.15);
+      position: relative; overflow: hidden;
+    }
+    .hero-scroll-line::after {
+      content: ''; position: absolute; top: -100%; left: 0;
+      width: 100%; height: 100%; background: var(--accent);
+      animation: scrollLine 2s infinite;
+    }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollLine {
+      0% { top: -100%; }
+      50% { top: 100%; }
+      100% { top: 100%; }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .stats-inner {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 44px 24px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 700; color: var(--green);
+      line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.78rem; color: var(--text-light);
+      font-weight: 500; letter-spacing: 0.04em;
+    }
+
+    /* ── SERVICES GRID ── */
+    .section { padding: 110px 0; }
+    .section-gray { background: var(--light-gray); }
+
+    .section-header {
+      margin-bottom: 60px;
+    }
+    .section-header.center { text-align: center; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .section-eyebrow::before {
+      content: ''; width: 28px; height: 2px; background: var(--accent);
+    }
+    .section-header.center .section-eyebrow { justify-content: center; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--text);
+      line-height: 1.15; margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 1rem; color: var(--text-mid);
+      line-height: 1.8; max-width: 560px;
+    }
+    .section-header.center .section-desc { margin: 0 auto; }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .service-tile {
+      position: relative; aspect-ratio: 4/5; overflow: hidden;
+      cursor: pointer;
+    }
+    .service-tile img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .service-tile:hover img { transform: scale(1.06); }
+    .service-tile-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,31,23,0.85) 0%, rgba(10,31,23,0.1) 60%);
+      transition: background 0.4s;
+    }
+    .service-tile:hover .service-tile-overlay {
+      background: linear-gradient(to top, rgba(0,105,75,0.9) 0%, rgba(0,105,75,0.3) 60%);
+    }
+    .service-tile-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px; color: #fff;
+    }
+    .service-tile-num {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.4); margin-bottom: 8px;
+    }
+    .service-tile h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 600; line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .service-tile p {
+      font-size: 0.8rem; color: rgba(255,255,255,0.6);
+      line-height: 1.6; max-height: 0; overflow: hidden;
+      transition: max-height 0.4s, opacity 0.4s; opacity: 0;
+    }
+    .service-tile:hover p { max-height: 80px; opacity: 1; }
+    .service-tile-arrow {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.74rem; font-weight: 600; color: var(--accent);
+      margin-top: 12px; opacity: 0; transform: translateX(-10px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .service-tile:hover .service-tile-arrow { opacity: 1; transform: translateX(0); }
+    .service-tile-arrow svg { width: 16px; height: 16px; fill: var(--accent); }
+
+    /* ── ABOUT SPLIT ── */
+    .about-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .about-image {
+      position: relative; border-radius: 8px; overflow: hidden;
+    }
+    .about-image img { width: 100%; height: 520px; object-fit: cover; }
+    .about-image-badge {
+      position: absolute; bottom: 24px; right: 24px;
+      background: var(--white); border-radius: 8px; padding: 20px 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15); text-align: center;
+    }
+    .about-image-badge h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--green); line-height: 1;
+    }
+    .about-image-badge p {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-light); margin-top: 2px;
+    }
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700; line-height: 1.2; margin-bottom: 24px;
+    }
+    .about-text p {
+      font-size: 0.95rem; color: var(--text-mid); line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .about-text p:last-of-type { margin-bottom: 36px; }
+    .about-checks {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;
+    }
+    .about-check {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .about-check-icon {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: var(--green-light); display: flex; align-items: center; justify-content: center;
+    }
+    .about-check-icon svg { width: 14px; height: 14px; fill: var(--green); }
+    .about-check span { font-size: 0.84rem; font-weight: 600; color: var(--text); }
+
+    /* ── GALLERY SCROLL ── */
+    .gallery-section { padding: 110px 0; overflow: hidden; }
+    .gallery-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .gallery-track-wrapper { position: relative; }
+    .gallery-track {
+      display: flex; gap: 16px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      scrollbar-width: none; -ms-overflow-style: none;
+      padding-bottom: 8px;
+    }
+    .gallery-track::-webkit-scrollbar { display: none; }
+    .gallery-card {
+      flex: 0 0 340px; scroll-snap-align: start;
+      border-radius: 10px; overflow: hidden; position: relative;
+      cursor: pointer; transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .gallery-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+    .gallery-card img { width: 100%; height: 260px; object-fit: cover; transition: transform 0.5s; }
+    .gallery-card:hover img { transform: scale(1.05); }
+    .gallery-card-overlay {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: rgba(0,105,75,0.7); opacity: 0; transition: opacity 0.3s;
+    }
+    .gallery-card:hover .gallery-card-overlay { opacity: 1; }
+    .gallery-card-overlay svg { width: 36px; height: 36px; fill: #fff; }
+
+    .gallery-nav { display: flex; gap: 8px; }
+    .gallery-nav button {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--white); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.25s;
+    }
+    .gallery-nav button:hover { background: var(--green); border-color: var(--green); }
+    .gallery-nav button:hover svg { fill: #fff; }
+    .gallery-nav button svg { width: 18px; height: 18px; fill: var(--text); transition: fill 0.25s; }
+
+    /* ── PROCESS ── */
+    .process-section { background: var(--green-deep); padding: 110px 0; position: relative; overflow: hidden; }
+    .process-section::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: rgba(0,105,75,0.08);
+    }
+    .process-section .section-eyebrow { color: var(--accent); }
+    .process-section .section-eyebrow::before { background: var(--accent); }
+    .process-section .section-title { color: #fff; }
+    .process-section .section-desc { color: rgba(255,255,255,0.45); }
+
+    .process-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; margin-top: 60px; position: relative; z-index: 1;
+    }
+    .process-card {
+      padding: 44px 28px; text-align: center; position: relative;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.4s, border-color 0.3s;
+    }
+    .process-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+    .process-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 700; color: rgba(255,255,255,0.06);
+      line-height: 1; margin-bottom: 20px;
+    }
+    .process-icon {
+      width: 52px; height: 52px; border-radius: 10px;
+      background: rgba(0,105,75,0.25); border: 1px solid rgba(0,105,75,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .process-icon svg { width: 24px; height: 24px; fill: var(--accent); }
+    .process-card h3 {
+      font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 10px;
+    }
+    .process-card p {
+      font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.7;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonial-section { padding: 110px 0; background: var(--white); }
+    .testimonial-featured {
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .testimonial-quote-icon {
+      width: 48px; height: 48px; margin: 0 auto 28px;
+      fill: var(--green); opacity: 0.15;
+    }
+    .testimonial-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+      font-weight: 400; font-style: italic;
+      color: var(--text); line-height: 1.7; margin-bottom: 32px;
+    }
+    .testimonial-author { display: flex; align-items: center; justify-content: center; gap: 14px; }
+    .testimonial-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green); display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem; color: #fff;
+    }
+    .testimonial-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text); }
+    .testimonial-info p { font-size: 0.78rem; color: var(--text-light); }
+    .testimonial-dots {
+      display: flex; justify-content: center; gap: 8px; margin-top: 40px;
+    }
+    .testimonial-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .testimonial-dot.active { background: var(--green); transform: scale(1.3); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--green); padding: 80px 0; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; top: -50%; right: -10%;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .cta-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; position: relative; z-index: 1;
+    }
+    .cta-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 10px;
+    }
+    .cta-text p { font-size: 0.95rem; color: rgba(255,255,255,0.6); }
+    .cta-actions { display: flex; gap: 14px; flex-shrink: 0; }
+    .btn-white-solid { background: #fff; color: var(--green); }
+    .btn-white-solid:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-white-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); }
+    .btn-white-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--green-deep); padding: 72px 0 32px; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand > img { height: 40px; margin-bottom: 16px; filter: brightness(0) invert(1); }
+    .footer-brand p { color: rgba(255,255,255,0.35); font-size: 0.84rem; line-height: 1.75; max-width: 280px; }
+    .footer-cert {
+      display: flex; align-items: center; gap: 10px; margin-top: 20px;
+    }
+    .footer-cert img { height: 36px; width: auto; }
+    .footer-cert span { font-size: 0.72rem; color: rgba(255,255,255,0.3); line-height: 1.4; }
+    .footer-col h4 {
+      color: #fff; font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 12px; }
+    .footer-col a {
+      color: rgba(255,255,255,0.35); font-size: 0.85rem;
+      transition: color 0.25s;
+    }
+    .footer-col a:hover { color: rgba(255,255,255,0.8); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 28px; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 0.76rem; color: rgba(255,255,255,0.2); }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { font-size: 0.76rem; color: rgba(255,255,255,0.2); transition: color 0.25s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,15,12,0.92); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+      padding: 40px;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 24px;
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.6); transition: color 0.25s;
+    }
+    .lightbox-close:hover { color: #fff; }
+    .lightbox-close svg { width: 28px; height: 28px; fill: currentColor; }
+    .lightbox img {
+      max-width: 90vw; max-height: 85vh; object-fit: contain;
+      border-radius: 6px; transition: transform 0.2s;
+    }
+    .lightbox-counter {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.4); font-size: 0.78rem; font-weight: 500;
+    }
+    .lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.25s;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.15); }
+    .lightbox-nav svg { width: 20px; height: 20px; fill: #fff; }
+    .lightbox-prev { left: 24px; }
+    .lightbox-next { right: 24px; }
+
+    /* ── MOBILE CTA BAR ── */
+    .mobile-cta-bar {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+      background: var(--white); border-top: 1px solid var(--border);
+      padding: 12px 16px;
+      box-shadow: 0 -2px 16px rgba(0,0,0,0.06);
+    }
+    .mobile-cta-inner { display: flex; gap: 10px; }
+    .mobile-cta-inner a {
+      flex: 1; text-align: center; padding: 12px; border-radius: 6px;
+      font-size: 0.82rem; font-weight: 700;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .container { padding: 0 28px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-split { grid-template-columns: 1fr; gap: 48px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .cta-inner { flex-direction: column; text-align: center; }
+      .cta-actions { justify-content: center; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .section { padding: 80px 0; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 76px; left: 0; right: 0;
+        background: var(--white); border-bottom: 1px solid var(--border);
+        padding: 16px 20px; gap: 0;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      }
+      .nav-links.open a { display: block; padding: 14px 0; color: var(--text); font-size: 0.95rem; }
+      .nav-links.open li { border-bottom: 1px solid var(--border); }
+      .nav-links.open li:last-child { border-bottom: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .gallery-card { flex: 0 0 280px; }
+      .gallery-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .mobile-cta-bar { display: block; }
+      body { padding-bottom: 72px; }
+      .hero-content { padding: 48px 0; }
+      .hero h1 { font-size: 2.4rem; }
+      .testimonial-text { font-size: 1.15rem; }
+      .about-image img { height: 320px; }
+    }
+
+    @media (max-width: 480px) {
+      .stat-item { padding: 28px 16px; }
+      .stat-number { font-size: 2.2rem; }
+      .process-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo"><img src="images/logo-alt.png" alt="Scott's Landscape & Fence"></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Portfolio</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li>
+          <a href="tel:5854040755" class="nav-phone">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+            (585) 404-0755
+          </a>
+        </li>
+      </ul>
+      <a href="#quote" class="nav-cta">
+        Free Estimate
+        <svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-label">Rochester, NY &bull; Since 1994</div>
+      <h1>Building Outdoor Spaces That <em>Last&nbsp;Generations</em></h1>
+      <p class="hero-desc">Over 30 years of fencing, concrete, and landscape craftsmanship trusted by thousands of homeowners and businesses across Western New York.</p>
+      <div class="hero-actions">
+        <a href="tel:5854040755" class="btn btn-accent">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+          Call Now
+        </a>
+        <a href="#quote" class="btn btn-outline">Get a Free Estimate</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      Scroll
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item fade-in">
+          <div class="stat-number"><span class="counter" data-target="30">0</span>+</div>
+          <div class="stat-label">Years in Business</div>
+        </div>
+        <div class="stat-item fade-in delay-1">
+          <div class="stat-number"><span class="counter" data-target="5000">0</span>+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-item fade-in delay-2">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Licensed & Insured</div>
+        </div>
+        <div class="stat-item fade-in delay-3">
+          <div class="stat-number">Free</div>
+          <div class="stat-label">Estimates Always</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <div class="section-eyebrow">What We Do</div>
+        <h2 class="section-title">Comprehensive Outdoor Services</h2>
+        <p class="section-desc">From custom fencing to complete landscape transformations, we handle every detail with precision and care.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-tile fade-in delay-1">
+          <img src="images/gallery-2.jpeg" alt="Wood & Vinyl Fencing" loading="lazy">
+          <div class="service-tile-overlay"></div>
+          <div class="service-tile-content">
+            <div class="service-tile-num">01</div>
+            <h3>Wood & Vinyl Fencing</h3>
+            <p>Custom-built privacy and decorative fencing to match your property's character.</p>
+            <div class="service-tile-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="service-tile fade-in delay-2">
+          <img src="images/gallery-4.jpeg" alt="Ornamental & Iron" loading="lazy">
+          <div class="service-tile-overlay"></div>
+          <div class="service-tile-content">
+            <div class="service-tile-num">02</div>
+            <h3>Ornamental & Iron</h3>
+            <p>Elegant aluminum and wrought iron solutions for timeless curb appeal.</p>
+            <div class="service-tile-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="service-tile fade-in delay-3">
+          <img src="images/gallery-6.jpeg" alt="Chain Link & Commercial" loading="lazy">
+          <div class="service-tile-overlay"></div>
+          <div class="service-tile-content">
+            <div class="service-tile-num">03</div>
+            <h3>Chain Link & Commercial</h3>
+            <p>Durable, cost-effective fencing for commercial and industrial properties.</p>
+            <div class="service-tile-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="service-tile fade-in delay-1">
+          <img src="images/concrete-1.jpg" alt="Concrete & Flatwork" loading="lazy">
+          <div class="service-tile-overlay"></div>
+          <div class="service-tile-content">
+            <div class="service-tile-num">04</div>
+            <h3>Concrete & Flatwork</h3>
+            <p>Driveways, patios, walkways, and foundations built to last decades.</p>
+            <div class="service-tile-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="service-tile fade-in delay-2">
+          <img src="images/stone-work.jpg" alt="Hardscaping & Stone" loading="lazy">
+          <div class="service-tile-overlay"></div>
+          <div class="service-tile-content">
+            <div class="service-tile-num">05</div>
+            <h3>Hardscaping & Stone</h3>
+            <p>Retaining walls, pavers, and natural stone for stunning outdoor spaces.</p>
+            <div class="service-tile-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="service-tile fade-in delay-3">
+          <img src="images/landscaping.png" alt="Landscape Design" loading="lazy">
+          <div class="service-tile-overlay"></div>
+          <div class="service-tile-content">
+            <div class="service-tile-num">06</div>
+            <h3>Landscape Design</h3>
+            <p>Full-service landscape planning, planting, and seasonal maintenance.</p>
+            <div class="service-tile-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section section-gray" id="about">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-image fade-in">
+          <img src="images/home-feature.png" alt="Scott's Landscape project" loading="lazy">
+          <div class="about-image-badge">
+            <h4>30+</h4>
+            <p>Years Experience</p>
+          </div>
+        </div>
+        <div class="about-text fade-in delay-2">
+          <div class="section-eyebrow">About Us</div>
+          <h2>A Legacy of Excellence Rooted in Craftsmanship</h2>
+          <p>Scott's Landscape and Fence isn't just another service provider; it's a legacy of excellence rooted in dedication and craftsmanship. For more than three decades, we've been the go-to partner for homeowners and businesses across Rochester and Western New York.</p>
+          <p>We have what it takes to get the job done. With our wide range of services and deep expertise, we're committed to transforming outdoor spaces with precision, care, and an unwavering commitment to quality.</p>
+          <div class="about-checks">
+            <div class="about-check">
+              <div class="about-check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+              <span>Licensed & Insured</span>
+            </div>
+            <div class="about-check">
+              <div class="about-check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+              <span>Free Estimates</span>
+            </div>
+            <div class="about-check">
+              <div class="about-check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+              <span>SleekFence Certified</span>
+            </div>
+            <div class="about-check">
+              <div class="about-check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+              <span>Western NY Service</span>
+            </div>
+          </div>
+          <a href="#quote" class="btn btn-green">Request a Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <div class="gallery-header">
+        <div class="fade-in">
+          <div class="section-eyebrow">Portfolio</div>
+          <h2 class="section-title">Recent Projects</h2>
+        </div>
+        <div class="gallery-nav fade-in">
+          <button id="galleryPrev" aria-label="Previous">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          </button>
+          <button id="galleryNext" aria-label="Next">
+            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="gallery-track" id="galleryTrack">
+        <div class="gallery-card" data-gallery>
+          <img src="images/gallery-1.jpeg" alt="Fencing project" loading="lazy">
+          <div class="gallery-card-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+        <div class="gallery-card" data-gallery>
+          <img src="images/gallery-2.jpeg" alt="Wood fence installation" loading="lazy">
+          <div class="gallery-card-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+        <div class="gallery-card" data-gallery>
+          <img src="images/gallery-3.jpeg" alt="Vinyl fence project" loading="lazy">
+          <div class="gallery-card-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+        <div class="gallery-card" data-gallery>
+          <img src="images/gallery-4.jpeg" alt="Ornamental fence" loading="lazy">
+          <div class="gallery-card-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+        <div class="gallery-card" data-gallery>
+          <img src="images/gallery-5.jpeg" alt="Landscape project" loading="lazy">
+          <div class="gallery-card-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+        <div class="gallery-card" data-gallery>
+          <img src="images/gallery-6.jpeg" alt="Commercial fencing" loading="lazy">
+          <div class="gallery-card-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+        <div class="gallery-card" data-gallery>
+          <img src="images/concrete-1.jpg" alt="Concrete project" loading="lazy">
+          <div class="gallery-card-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+        <div class="gallery-card" data-gallery>
+          <img src="images/concrete-2.jpg" alt="Concrete flatwork" loading="lazy">
+          <div class="gallery-card-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section" id="process">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <div class="section-eyebrow">How It Works</div>
+        <h2 class="section-title">From First Call to Final Walk-Through</h2>
+        <p class="section-desc">A straightforward, transparent process designed to make your project stress-free from start to finish.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card fade-in delay-1">
+          <div class="process-num">01</div>
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+          </div>
+          <h3>Give Us a Call</h3>
+          <p>Reach out to discuss your project. We'll listen to your vision and schedule a time to visit your property.</p>
+        </div>
+        <div class="process-card fade-in delay-2">
+          <div class="process-num">02</div>
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h5v7h7v9H6z"/></svg>
+          </div>
+          <h3>Free Estimate</h3>
+          <p>We visit on-site, take measurements, and provide a detailed, no-obligation quote for your project.</p>
+        </div>
+        <div class="process-card fade-in delay-3">
+          <div class="process-num">03</div>
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4a9 9 0 100 18 9 9 0 000-18zm0 16a7 7 0 110-14 7 7 0 010 14z"/></svg>
+          </div>
+          <h3>Expert Installation</h3>
+          <p>Our experienced crew completes your project with precision, on schedule, and minimal disruption.</p>
+        </div>
+        <div class="process-card fade-in delay-4">
+          <div class="process-num">04</div>
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          </div>
+          <h3>Final Walk-Through</h3>
+          <p>We walk the finished project with you to ensure every detail meets your expectations. Your satisfaction is guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonial-section" id="testimonials">
+    <div class="container">
+      <div class="testimonial-featured fade-in">
+        <svg class="testimonial-quote-icon" viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3l-2 4zm8 0h3l2-4V7h-6v6h3l-2 4z"/></svg>
+        <div id="testimonialSlider">
+          <p class="testimonial-text" id="testimonialText">"I hired Scott's to install a privacy fence around our yard. From start to finish, the experience was fantastic. The crew was professional, courteous, and completed the work in just two days. Couldn't be happier with the results!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" id="testimonialAvatar">RB</div>
+            <div class="testimonial-info">
+              <h4 id="testimonialName">Rebecca B.</h4>
+              <p id="testimonialRole">Rochester, NY</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-dots" id="testimonialDots">
+          <button class="testimonial-dot active" data-index="0"></button>
+          <button class="testimonial-dot" data-index="1"></button>
+          <button class="testimonial-dot" data-index="2"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner" id="quote">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Ready to Start Your Project?</h2>
+        <p>Get a free, no-obligation estimate from our team today.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="tel:5854040755" class="btn btn-white-solid">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+          (585) 404-0755
+        </a>
+        <a href="tel:5854040755" class="btn btn-white-outline">Get Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="images/logo-alt.png" alt="Scott's Landscape & Fence">
+          <p>Quality fencing, concrete, and landscape services across Rochester and Western New York since 1994.</p>
+          <div class="footer-cert">
+            <img src="images/sleekfence-badge.png" alt="SleekFence Certified">
+            <span>Certified SleekFence<br>Contractor</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Wood & Vinyl Fencing</a></li>
+            <li><a href="#services">Ornamental & Iron</a></li>
+            <li><a href="#services">Chain Link Fencing</a></li>
+            <li><a href="#services">Concrete & Flatwork</a></li>
+            <li><a href="#services">Hardscaping & Stone</a></li>
+            <li><a href="#services">Landscape Design</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Portfolio</a></li>
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#quote">Free Estimate</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:5854040755">(585) 404-0755</a></li>
+            <li><a href="tel:5855034199">(585) 503-4199</a></li>
+            <li><a>Rochester, NY</a></li>
+            <li><a>Western New York</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 Scott's Landscape & Fence. All rights reserved.</span>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+    <img id="lightboxImg" src="" alt="">
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+    <button class="lightbox-nav lightbox-next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+  </div>
+
+  <!-- MOBILE CTA BAR -->
+  <div class="mobile-cta-bar">
+    <div class="mobile-cta-inner">
+      <a href="tel:5854040755" class="btn btn-green" style="font-size:0.82rem;padding:12px;">Call Now</a>
+      <a href="#quote" class="btn btn-green-outline" style="font-size:0.82rem;padding:12px;">Free Estimate</a>
+    </div>
+  </div>
+
+  <script>
+    // Nav scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // Mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      navToggle.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { navLinks.classList.remove('open'); navToggle.classList.remove('active'); });
+    });
+
+    // Hero zoom-out on load
+    window.addEventListener('load', () => {
+      document.querySelector('.hero').classList.add('loaded');
+    });
+
+    // Scroll reveal
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => revealObs.observe(el));
+
+    // Counter animation
+    let counted = false;
+    const counterObs = new IntersectionObserver((entries) => {
+      if (counted) return;
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          counted = true;
+          document.querySelectorAll('.counter').forEach(c => {
+            const target = +c.dataset.target;
+            const start = performance.now();
+            const dur = 2000;
+            (function step(now) {
+              const p = Math.min((now - start) / dur, 1);
+              const ease = 1 - Math.pow(1 - p, 3);
+              const val = Math.round(ease * target);
+              c.textContent = target >= 1000 ? val.toLocaleString() : val;
+              if (p < 1) requestAnimationFrame(step);
+            })(start);
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stats-bar').forEach(el => counterObs.observe(el));
+
+    // Gallery horizontal scroll nav
+    const track = document.getElementById('galleryTrack');
+    document.getElementById('galleryPrev').addEventListener('click', () => {
+      track.scrollBy({ left: -360, behavior: 'smooth' });
+    });
+    document.getElementById('galleryNext').addEventListener('click', () => {
+      track.scrollBy({ left: 360, behavior: 'smooth' });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const galleryItems = [...document.querySelectorAll('[data-gallery]')];
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const img = galleryItems[index].querySelector('img');
+      lightboxImg.src = img.src; lightboxImg.alt = img.alt;
+      lightboxCounter.textContent = (index + 1) + ' / ' + galleryItems.length;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function navigateLightbox(dir) {
+      currentIndex = (currentIndex + dir + galleryItems.length) % galleryItems.length;
+      const img = galleryItems[currentIndex].querySelector('img');
+      lightboxImg.style.opacity = '0';
+      setTimeout(() => {
+        lightboxImg.src = img.src; lightboxImg.alt = img.alt;
+        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + galleryItems.length;
+        lightboxImg.style.opacity = '1';
+      }, 150);
+    }
+    lightboxImg.style.transition = 'opacity 0.2s';
+
+    galleryItems.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.lightbox-prev').addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(-1); });
+    lightbox.querySelector('.lightbox-next').addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(1); });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(diff) > 50) navigateLightbox(diff > 0 ? -1 : 1);
+    });
+
+    // Testimonial slider
+    const testimonials = [
+      { text: '"I hired Scott\'s to install a privacy fence around our yard. From start to finish, the experience was fantastic. The crew was professional, courteous, and completed the work in just two days. Couldn\'t be happier with the results!"', name: 'Rebecca B.', role: 'Rochester, NY', initials: 'RB' },
+      { text: '"Scott and his team replaced our old chain link fence with a beautiful vinyl fence. They were on time, clean, and the price was very fair. We\'ve already recommended them to three of our neighbors."', name: 'Matt M.', role: 'Greece, NY', initials: 'MM' },
+      { text: '"Had a large concrete patio poured and it looks incredible. The crew was hardworking and professional. Scott personally checked in multiple times during the project. That kind of attention to detail is rare."', name: 'Ken M.', role: 'Webster, NY', initials: 'KM' }
+    ];
+    let currentTestimonial = 0;
+    const tText = document.getElementById('testimonialText');
+    const tName = document.getElementById('testimonialName');
+    const tRole = document.getElementById('testimonialRole');
+    const tAvatar = document.getElementById('testimonialAvatar');
+    const tDots = document.querySelectorAll('.testimonial-dot');
+
+    function showTestimonial(index) {
+      currentTestimonial = index;
+      tText.style.opacity = '0'; tText.style.transform = 'translateY(10px)';
+      setTimeout(() => {
+        tText.textContent = testimonials[index].text;
+        tName.textContent = testimonials[index].name;
+        tRole.textContent = testimonials[index].role;
+        tAvatar.textContent = testimonials[index].initials;
+        tText.style.opacity = '1'; tText.style.transform = 'translateY(0)';
+      }, 300);
+      tDots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+    tText.style.transition = 'opacity 0.3s, transform 0.3s';
+    tDots.forEach(dot => dot.addEventListener('click', () => showTestimonial(+dot.dataset.index)));
+
+    // Auto-rotate testimonials
+    setInterval(() => {
+      showTestimonial((currentTestimonial + 1) % testimonials.length);
+    }, 6000);
+  </script>
+
+</body>
+</html>
