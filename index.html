@@ -1099,13 +1099,14 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-in').forEach(el => revealObs.observe(el));
 
-    // Counter animation
+    // Counter animation — only starts when stats bar is actually visible
     let counted = false;
     const counterObs = new IntersectionObserver((entries) => {
       if (counted) return;
       entries.forEach(e => {
-        if (e.isIntersecting) {
+        if (e.isIntersecting && e.intersectionRatio >= 0.6) {
           counted = true;
+          counterObs.disconnect();
           document.querySelectorAll('.counter').forEach(c => {
             const target = +c.dataset.target;
             const start = performance.now();
@@ -1120,7 +1121,7 @@
           });
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: [0, 0.6], rootMargin: '0px' });
     document.querySelectorAll('.stats-bar').forEach(el => counterObs.observe(el));
 
     // Gallery horizontal scroll nav
